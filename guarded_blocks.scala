@@ -1,6 +1,12 @@
 import scala.collection._
 
+object learningconcurrency {
+  def log(msg: String): Unit = println(s"${Thread.currentThread.getName}: $msg")
+}
+
 object SynchronizedBadPool extends App {
+  import learningconcurrency._
+
   type Task = () => Unit
 
   private val tasks = mutable.Queue[Task]()
@@ -22,5 +28,12 @@ object SynchronizedBadPool extends App {
   worker.setDaemon(true)
   worker.start()
 
+  def asynchronous(body: => Unit) = tasks.synchronized {
+    tasks.enqueue(() => body)
+  }
 
+  asynchronous { log("Hello")  }
+  asynchronous { log(" world") }
+
+  Thread.sleep(5000)
 }
