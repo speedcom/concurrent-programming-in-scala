@@ -3,15 +3,15 @@ class SyncQueue[T](n: Int) {
 
   var queue = immutable.Queue[T]()
 
-  def put[T](x: T): Unit = synchronized {
-    if(queue.size == n)
+  def put(x: T): Unit = synchronized {
+    while(queue.size == n)
       this.wait()
 
     queue = queue :+ x
   }
 
   def get: T = synchronized {
-    if(queue.size < 1)
+    while(queue.size < 1)
       this.wait()
 
     val (head, tail) = queue.dequeue
