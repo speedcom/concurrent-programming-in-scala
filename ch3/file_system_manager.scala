@@ -37,3 +37,22 @@ case class Entry(isDir: Boolean) {
 
   val state = new AtomicReference[FileState](new Idle)
 }
+
+object Entry {
+
+  def prepareForDelete(entry: Entry): Boolean = {
+    val s0 = entry.state.get
+
+    s0 match {
+      case i: Idle     => {
+        if(entry.state.compareAndSet(s0, new Delete))
+          true
+        else prepareForDelete(entry)
+      }
+      case cp: Copying => println(s"have to be in Idle mode, not $cp"); false
+      case c: Creating => println(s"have to be in Idle mode, not $c "); false
+      case d: Deleting => println(s"have to be in Idle mode, not $d "); false
+    }
+  }
+
+}
