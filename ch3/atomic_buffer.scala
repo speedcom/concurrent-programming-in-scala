@@ -30,5 +30,5 @@ object atomic_buffer extends App {
   Thread.sleep(1000)
 
   assert(intBuffer.buffer.get.size == 20)
-
+  println(intBuffer.buffer.get)
 }
