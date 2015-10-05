@@ -1,8 +1,3 @@
-import scala.concurrent._
-
-def execute(body: =>Unit) = ExecutionContext.global.execute(
-  new Runnable { def run() = body }
-)
 
 // CAS - more or less its implemented this way
 def compareAndSet(ov: Long, nv: Long): Boolean = {
