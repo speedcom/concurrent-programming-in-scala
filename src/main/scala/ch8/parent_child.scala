@@ -35,7 +35,7 @@ object ChildActor {
 
 object parent_child extends App {
 
-  val actorSystem = ActorSystem("system")
+  val actorSystem = ActorSystem("exemplary-system")
 
   val parentActorRef = actorSystem.actorOf(ParentActor.props)
 
