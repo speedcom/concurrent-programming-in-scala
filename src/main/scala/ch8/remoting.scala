@@ -1,7 +1,12 @@
-import akka.actor.{Actor, ActorLogging, Props}
-import akka.actor.ActorSystem
+import akka.actor.{Actor, ActorSystem, ActorLogging, Props, ActorRef}
 import com.typesafe.config._
 import scala.collection._
+import akka.util.Timeout
+import akka.pattern.{ask, pipe, gracefulStop}
+import akka.util.Timeout
+import scala.concurrent.duration._
+import scala.concurrent.ExecutionContext.Implicits.global
+import scala.util._
 
 object Remoting {
   def remotingConfig(port: Int) = ConfigFactory.parseString(s"""
@@ -19,6 +24,27 @@ object Remoting {
   )
   def remotingSystem(name: String, port: Int): ActorSystem =
     ActorSystem(name, remotingConfig(port))
+}
+
+class Pongy extends Actor {
+  val log = Logging(context.system, this)
+  def receive = {
+    case "ping" =>
+      log.info("Got a ping -- ponging back!")
+      sender ! "pong"
+      context.stop(self)
+  }
+  override def postStop() = log.info("pongy going down")
+}
+
+
+class Pingy extends Actor {
+  def receive = {
+    case pongyRef: ActorRef =>
+      implicit val timeout = Timeout(2 seconds)
+      val future = pongyRef ? "ping"
+      pipe(future) to sender
+  }
 }
 
 class Runner extends Actor {
