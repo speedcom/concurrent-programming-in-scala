@@ -32,3 +32,18 @@ object ParSizeEffectsIncorrect extends App {
   println(s"Sequential result - $seqres")
   println(s"Parallel result - $parres")
 }
+
+object ParSizeEffectsCorrect extends App {
+
+  def intersectionSize(a: GenSet[Int], b: GenSet[Int]): Int = {
+    a.count(x => b contains x)
+  }
+
+  val a = (0 to 1000).toSet
+  val b = (0 to 1000 by 4).toSet
+
+  val seqres = intersectionSize(a, b)
+  val parres = intersectionSize(a.par, b.par)
+  println(s"Sequential result - $seqres")
+  println(s"Parallel result - $parres")
+}
