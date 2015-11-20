@@ -1,4 +1,3 @@
-package org.learningconcurrency
 package ch8
 
 import akka.actor._
