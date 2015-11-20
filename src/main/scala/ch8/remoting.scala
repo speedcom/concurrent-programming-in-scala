@@ -1,4 +1,5 @@
-import akka.actor.{Actor, ActorSystem, ActorLogging, Props, ActorRef}
+import akka.actor.{Actor, ActorSystem, ActorLogging, ActorIdentity, Identify, Props, ActorRef}
+import akka.event.Logging
 import com.typesafe.config._
 import scala.collection._
 import akka.util.Timeout
