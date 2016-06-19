@@ -11,4 +11,6 @@ package object ch2 {
     t
   }
 
+  def log(msg: String): Unit = println(s"${Thread.currentThread().getName}: $msg")
+
 }
