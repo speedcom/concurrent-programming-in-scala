@@ -4,6 +4,13 @@ Concurrency on the JVM and the Java Memory Model
 2. Monitors and synchronization
     a) Deadlocks
     b) Guarded blocks
+    Proces JVM-owy nie zostaje zakończony wtedy gdy wątek Main zostanie przerwany.
+    Dzieje się to dopiero wtedy gdy wszystkie non-deamon wątki zostają zakończone (wątek Main to nie jedyny wątek jaki zostaje utworzony podczas odpalenia procesu JVM-owego).
+
+    Guaded block - jest to chroniony kod z uzyciem synchronized, w ramach ktorego warunek zostaje sprawdzany w petli poprzedzajacej wywolanie metody wait na obiekcie
+    Jest to istotne aby dzialo sie w petli, poniewaz JVM jest zdolny do wybudzenia watku pomimo tego, ze metoda notify nie zostala wywolana.
+    To zjawisko jest okreslane jako spurious wakeups.
+
     c) Interrupting threads and the graceful shutdown
 3. Volatile variables
 4. The Java Memory Model
