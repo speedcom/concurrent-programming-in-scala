@@ -1,0 +1,14 @@
+Concurrency on the JVM and the Java Memory Model
+
+1. Processes and Threads
+2. Monitors and synchronization
+3. Volatile variables
+4. The Java Memory Model
+
+Podsumowanie
+W tym rodziale pokazane zostały następujace rzeczy:
+1. W jaki sposób tworzyć i startować wątki oraz czekać na ich zakończenie.
+2. W jaki sposób, modyfikując współdzieloną pamieć, komunikować się miedz wątkami oraz używając synchronized i co to oznacza, że wątek jest zablokowany.
+3. W jaki sposób zapobiegać deadlockom poprzez wykonanie porządku na lockach (ordering) oraz wykorzystaniu guarded-blocków na rzecz busy-waiting.
+4. W jaki sposób zaimplementować graceful shutdown wątku i kiedy komuikować się z użyciem zmiennych volatile.
+5. Dowiedzieliśmy się, że jedyna słuszna formą wnioskowania na temat działania programów współbieżnych działa w oparciu o regułę happens-before zdefiniowaną przez JMM.
