@@ -3,6 +3,8 @@ Concurrency on the JVM and the Java Memory Model
 1. Processes and Threads
 2. Monitors and synchronization
     a) Deadlocks
+    synchronized - powoduje, ze modyfikacje danych przez watek sa widoczne dla innych oraz ogranicza dostep do chronionych zasobow
+
     b) Guarded blocks
     Proces JVM-owy nie zostaje zakończony wtedy gdy wątek Main zostanie przerwany.
     Dzieje się to dopiero wtedy gdy wszystkie non-deamon wątki zostają zakończone (wątek Main to nie jedyny wątek jaki zostaje utworzony podczas odpalenia procesu JVM-owego).
