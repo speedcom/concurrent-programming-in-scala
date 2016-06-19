@@ -2,6 +2,9 @@ Concurrency on the JVM and the Java Memory Model
 
 1. Processes and Threads
 2. Monitors and synchronization
+    a) Deadlocks
+    b) Guarded blocks
+    c) Interrupting threads and the graceful shutdown
 3. Volatile variables
 4. The Java Memory Model
 
